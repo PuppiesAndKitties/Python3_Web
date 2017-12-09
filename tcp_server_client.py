@@ -18,8 +18,8 @@ def recvall(sock, length):
 
 def server(interface, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)    #REFUSEADDR表示允许多个实例绑定同一个端口
-    sock.bind((interface, port))        #将服务器与该接口IP和端口绑定
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)    #REFUSEADDR表示允许多个实例绑定同一个端口。详细来说，其可以指明应用程序能够使用一些网络客户端之前的连接正在关闭的端口。
+    sock.bind((interface, port))        #将服务器与该端口绑定，并且interface指明了服务器要监听的网络接口。如果是localhost的话，那么表示服务器不会接收到来自其他机器的连接请求，不会有任何响应。
     sock.listen(1)
     print('Listening at', sock.getsockname())
     while True:
